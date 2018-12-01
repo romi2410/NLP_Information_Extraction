@@ -13,6 +13,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag
 from nltk.parse.stanford import StanfordDependencyParser
+from nltk.corpus import wordnet
 
 # Implementation of a tokenizer to divide strings into lists of substrings
 def tokenize(s):
@@ -36,6 +37,7 @@ def posTag(s):
 
 # Parse sentences using StanfordDependencyParser.
 def syntacticParse(s):
+    print("\n\nParsing:")
     stanford_parser_dir = 'libraries/'
     my_path_to_models_jar = stanford_parser_dir  + "stanford-corenlp/stanford-corenlp-3.9.2-models.jar"
     my_path_to_jar = stanford_parser_dir  + "stanford-parser/stanford-parser.jar"
@@ -44,8 +46,33 @@ def syntacticParse(s):
     result = dependency_parser.raw_parse(s)
     print(list((result.__next__()).triples()))
 
-def extractRelations(s):
-    
+# Extract semantic relations between synsets.
+def semanticRelations(s):
+    print("\n\nSemantic Relations between synsets:")
+    for word in word_tokenize(s):
+        print("\nRelations for word: " + word + " -")
+        # Extract Hypernyms: superordination relation
+        print("-> Hypernyms: ")
+        for ss in wordnet.synsets(word):
+            for hyper in ss.hypernyms():
+                print(ss, hyper)
+        # Extract Hyponyms: subordination relation
+        print("-> Hyponyms: ")
+        for ss in wordnet.synsets(word):
+            for hypo in ss.hyponyms():
+                print(ss, hypo)
+        # Extract Meronyms: part to whole relation
+        print("-> Meronyms: ")
+        for ss in wordnet.synsets(word):
+            for mero in ss.part_meronyms():
+                print(ss, mero)
+        # Extract Holonyms: whole to part relation
+        print("-> Holonyms: ")
+        for ss in wordnet.synsets(word):
+            for holo in ss.part_holonyms():
+                print(ss, holo)
+        print("-----------------------------------------------------")
+
 
 if __name__ == "__main__":
 
@@ -73,7 +100,7 @@ if __name__ == "__main__":
         elif inp == '4':
             syntacticParse(string)
         elif inp == '5':
-            extractRelations(string)
+            semanticRelations(string)
         elif inp == "6":
             print("\nGoodbye!")
             exit()
