@@ -9,6 +9,7 @@ from the natural language statements.
 5. Extract hypernyms, hyponyms, meronyms and holonyms as features.
 """
 
+import os
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag
@@ -76,7 +77,21 @@ def semanticRelations(s):
 
 if __name__ == "__main__":
 
-    string = input("Enter string: ")
+    print("""
+    1. Enter text.
+    2. Enter filename.
+    """)
+
+    inp = input("\n\nWhat would you like to do? ")
+
+    if inp == "1":
+        string = input("Enter string: ")
+    elif inp == "2":
+        path = os.path.dirname(os.path.realpath(__file__)) + '/corpus'
+        filename = input("Please make sure file is at path " + path + ". \nEnter filename: ")
+        filename = path + '/' + filename
+        with open(filename, 'r') as myfile:
+            string = myfile.read()
 
     while True:
         # Printing menu
