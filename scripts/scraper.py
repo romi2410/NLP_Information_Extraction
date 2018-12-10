@@ -48,8 +48,8 @@ for page in pages:
         p_wiki = re.sub(r'(?<=[.])(?=[^\s])', r' ', p_wiki)
 
         # Reference resolution
-        p_wiki = re.sub(r'\bHe\b', r''+page+'', p_wiki)
-        p_wiki = re.sub(r'\bhe\b', r''+page+'', p_wiki)
+        p_wiki = re.sub(r'\s\bHe\b\s', r' '+page+' ', p_wiki)
+        p_wiki = re.sub(r'\s\bhe\b\s', r''+page+'', p_wiki)
 
         f.write(p_wiki)
 
