@@ -4,8 +4,9 @@ Program to scrape data from wikipedia pages.
 
 from collections import Counter
 import wikipediaapi
+import re
 
-fname = "corpus.txt"
+fname = "corpus/corpus.txt"
 f = open(fname, "a")
 
 pages = ['Steve Jobs',
@@ -15,7 +16,21 @@ pages = ['Steve Jobs',
          'Mark Zuckerberg',
          'Bill Gates',
          'Stephen Hawking',
-         'Larry Page']
+         'Larry Page',
+         'Marc Benioff',
+         'Paul Allen',
+         'Jerry Yang',
+         'Elon Musk',
+         'Steve Ballmer',
+         'Tim Berners-Lee',
+         'Kevin Systrom',
+         'Sundar Pichai',
+         'Evan Spiegel',
+         'Alexander Fleming',
+         'Bjarne Stroustrup',
+         'Jack Dorsey',
+         'James Goslin',
+         'Bob Iger']
 
 wiki_wiki = wikipediaapi.Wikipedia(
         language='en',
@@ -26,7 +41,18 @@ for page in pages:
     p_wiki = wiki_wiki.page(page)
 
     if p_wiki.exists():
-        f.write(p_wiki.text)
+        # Extract information till 'References' section
+        p_wiki = (p_wiki.text).partition("References")[0]
+
+        # Make sure that . is followed by a space
+        p_wiki = re.sub(r'(?<=[.])(?=[^\s])', r' ', p_wiki)
+
+        # Reference resolution
+        p_wiki = re.sub(r'\bHe\b', r''+page+'', p_wiki)
+        p_wiki = re.sub(r'\bhe\b', r''+page+'', p_wiki)
+
+        f.write(p_wiki)
+
         print(page + " - Page exists & added to Corpus.")
     else    :
         print(page + " - Page doesn't exist.")
