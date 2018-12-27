@@ -10,126 +10,126 @@ We used template filling approach to find information from the Wikipedia corpus 
 ### Task 1 : Created a set of templates and slots.
 For this project, we identified semantic entities and events , and created a total of 12 information templates and 40 slots.
 #### Template 1
-Key_People&nbsp;
-Key_Person_Name&nbsp;
-Birth_Place&nbsp;
-Birth_Date&nbsp;
-Nationality&nbsp;
+Key_People<br/>
+Key_Person_Name<br/>
+Birth_Place<br/>
+Birth_Date<br/>
+Nationality<br/>
 #### Template 2
-Family&nbsp;
-Key_Person_Name&nbsp;
-Ancestry&nbsp;
-Father&nbsp;
-Mother&nbsp;
-Children&nbsp;
-Relatives&nbsp;
+Family<br/>
+Key_Person_Name<br/>
+Ancestry<br/>
+Father<br/>
+Mother<br/>
+Children<br/>
+Relatives<br/>
 #### Template 3
-Occupation&nbsp;
-Key_Person_Name&nbsp;
-Work&nbsp;
-Board_Member_Of&nbsp;
+Occupation<br/>
+Key_Person_Name<br/>
+Work<br/>
+Board_Member_Of<br/>
 #### Template 4
-Education&nbsp;
-Key_Person_Name&nbsp;
-Year&nbsp;
-Degree&nbsp;
-Discipline&nbsp;
-University&nbsp;
+Education<br/>
+Key_Person_Name<br/>
+Year<br/>
+Degree<br/>
+Discipline<br/>
+University<br/>
 #### Template 5
-Career&nbsp;
-Key_Person_Name&nbsp;
-Company&nbsp;
-Title&nbsp;
-Number_Of_Years&nbsp;
+Career<br/>
+Key_Person_Name<br/>
+Company<br/>
+Title<br/>
+Number_Of_Years<br/>
 #### Template 6
-Health&nbsp;
-Key_Person_Name&nbsp;
-Disability_Flag&nbsp;
-Disability&nbsp;
-Illness&nbsp;
+Health<br/>
+Key_Person_Name<br/>
+Disability_Flag<br/>
+Disability<br/>
+Illness<br/>
 #### Template 7
-Financial_Status&nbsp;
-Key_Person_Name&nbsp;
-Salary&nbsp;
-Net_Worth&nbsp;
-Possessions&nbsp;
+Financial_Status<br/>
+Key_Person_Name<br/>
+Salary<br/>
+Net_Worth<br/>
+Possessions<br/>
 #### Template 8
-Recognition&nbsp;
-Key_Person_Name&nbsp;
-Year&nbsp;
-Accolade&nbsp;
-Patents&nbsp;
-Tributes&nbsp;
+Recognition<br/>
+Key_Person_Name<br/>
+Year<br/>
+Accolade<br/>
+Patents<br/>
+Tributes<br/>
 #### Template 9
-Philanthropic_Endeavours&nbsp;
-Key_Person_Name&nbsp;
-Charitable Organization&nbsp;
-Amount_Donated&nbsp;
+Philanthropic_Endeavours<br/>
+Key_Person_Name<br/>
+Charitable Organization<br/>
+Amount_Donated<br/>
 #### Template 10
-Death&nbsp;
-Key_Person_Name&nbsp;
-Place_Died&nbsp;
-Date_Died&nbsp;
-Cause_Of_Death&nbsp;
-Resting_Place&nbsp;
+Death<br/>
+Key_Person_Name<br/>
+Place_Died<br/>
+Date_Died<br/>
+Cause_Of_Death<br/>
+Resting_Place<br/>
 #### Template 11
-Publications&nbsp;
-Key_Person_Name&nbsp;
-Books&nbsp;
-Papers&nbsp;
-Films&nbsp;
+Publications<br/>
+Key_Person_Name<br/>
+Books<br/>
+Papers<br/>
+Films<br/>
 #### Template 12
-Innovations&nbsp;
-Key_Person_Name&nbsp;
-Entity&nbsp;
-Year&nbsp;
-Cofounders&nbsp;
+Innovations<br/>
+Key_Person_Name<br/>
+Entity<br/>
+Year<br/>
+Cofounders<br/>
 
 
 ### Task 2 : Created a corpus of natural language statements.
-Wikipedia, in particular, is a rich source of textual data and contains vast collection of knowledge. We built a corpus from the set of English Wikipedia articles, which are freely and conveniently available online. In order to build the corpus, we used Wikipedia-API, a python wrapper for Wikipedia’s API. We wrote a python script scraper.py to built the corpus by simply scraping the data and removing References section. Our corpus comprises of 85,000 words and is built for following famous people in technology -&nbsp;
-● Steve Jobs&nbsp;
-● Tim Cook&nbsp;
-● Steve Wozniak&nbsp;
-● Jeff Bezos&nbsp;
-● Mark Zuckerberg&nbsp;
-● Bill Gates&nbsp;
-● Stephen Hawking&nbsp;
-● Larry Page&nbsp;
-● Marc Benioff&nbsp;
-● Paul Allen&nbsp;
-● Jerry Yang&nbsp;
-● Elon Musk&nbsp;
-● Steve Ballmer&nbsp;
-● Tim Berners-Lee&nbsp;
-● Kevin Systrom&nbsp;
-● Sundar Pichai&nbsp;
-● Evan Spiegel&nbsp;
-● Alexander Fleming&nbsp;
-● Bjarne Stroustrup&nbsp;
-● Jack Dorsey&nbsp;
-● Bob Iger&nbsp;
+Wikipedia, in particular, is a rich source of textual data and contains vast collection of knowledge. We built a corpus from the set of English Wikipedia articles, which are freely and conveniently available online. In order to build the corpus, we used Wikipedia-API, a python wrapper for Wikipedia’s API. We wrote a python script scraper.py to built the corpus by simply scraping the data and removing References section. Our corpus comprises of 85,000 words and is built for following famous people in technology -<br/>
+● Steve Jobs<br/>
+● Tim Cook<br/>
+● Steve Wozniak<br/>
+● Jeff Bezos<br/>
+● Mark Zuckerberg<br/>
+● Bill Gates<br/>
+● Stephen Hawking<br/>
+● Larry Page<br/>
+● Marc Benioff<br/>
+● Paul Allen<br/>
+● Jerry Yang<br/>
+● Elon Musk<br/>
+● Steve Ballmer<br/>
+● Tim Berners-Lee<br/>
+● Kevin Systrom<br/>
+● Sundar Pichai<br/>
+● Evan Spiegel<br/>
+● Alexander Fleming<br/>
+● Bjarne Stroustrup<br/>
+● Jack Dorsey<br/>
+● Bob Iger<br/>
 
 A snippet from the corpus -
 “Steven Paul Jobs (; February 24, 1955 – October 5, 2011) was an American business magnate and investor. Steve Jobs was the chairman, chief executive officer (CEO), and co-founder of Apple Inc. ; chairman and majority shareholder of Pixar; a member of The Walt Disney Company's board of directors following its acquisition of Pixar; and the founder, chairman, and CEO of NeXT. …”
 
 ### Task 3 : Extracted NLP based features from corpus.
-We implemented a deeper NLP pipeline to extract the following NLP based features from the natural language statements.&nbsp;
+We implemented a deeper NLP pipeline to extract the following NLP based features from the natural language statements.<br/>
 ● Tokenized the corpus into sentences and words. Using NLTK package, we segmented the entire corpus into sentences and
-then tokenized the sentences into words.&nbsp;
-● Lemmatized the words to extract lemmas as features. Using NLTK package, we lemmatized the corpus to reduce inflectional forms and sometimes derivationally related forms of a word to a common base form.&nbsp;
-● Part-of-speech(POS) tagged the words to extract POS tag features. Using NLTK package, we classified words into their part-of-speech and label them with appropriate POS tag.&nbsp;
-● Performed dependency parsing to identify parsed tree based patterns as features. Using Stanford dependency parser, we analyzed the grammatical structure of the sentences and established relationships between head words and words that modify those heads.&nbsp;
-● Used WordNet to extract hypernyms, hyponyms, meronyms and holonyms as features.&nbsp;
+then tokenized the sentences into words.<br/>
+● Lemmatized the words to extract lemmas as features. Using NLTK package, we lemmatized the corpus to reduce inflectional forms and sometimes derivationally related forms of a word to a common base form.<br/>
+● Part-of-speech(POS) tagged the words to extract POS tag features. Using NLTK package, we classified words into their part-of-speech and label them with appropriate POS tag.<br/>
+● Performed dependency parsing to identify parsed tree based patterns as features. Using Stanford dependency parser, we analyzed the grammatical structure of the sentences and established relationships between head words and words that modify those heads.<br/>
+● Used WordNet to extract hypernyms, hyponyms, meronyms and holonyms as features.<br/>
 
 ### Task 4 : Filled templates from corpus.
 We implemented a heuristic based approach to extract filled information templates from the corpus of natural language statements. We ran the deeper NLP pipeline (from Task 3) on the entire corpus and then, using a python script and pattern-based information extraction methods, extracted features specific to the templates.
 
 ## Programming Tools Used
-● Python 3.6.1.&nbsp;
-● Wikipedia-API (Python wrapper for Wikipedia’s API).&nbsp;
-● Natural Language ToolKit (NLTK).&nbsp;
-● Stanford NER Tagger.&nbsp;
-● Anaphora Resolution.&nbsp;
-● Stanford Dependency Parser.&nbsp;
-● Geotext.&nbsp;
+● Python 3.6.1.<br/>
+● Wikipedia-API (Python wrapper for Wikipedia’s API).<br/>
+● Natural Language ToolKit (NLTK).<br/>
+● Stanford NER Tagger.<br/>
+● Anaphora Resolution.<br/>
+● Stanford Dependency Parser.<br/>
+● Geotext.<br/>
